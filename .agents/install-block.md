@@ -22,9 +22,27 @@ It's in Claude Code's official marketplace, so there's nothing to add first, and
 
 </canonical-block>
 
+## PI: the native package
+
+PI installs the promoted skill set as a managed package, including its skill-composition and subagent compatibility tools:
+
+<canonical-block name="pi">
+
+```bash
+pi install git:github.com/mattpocock/skills
+```
+
+Updates arrive through PI's package updater:
+
+```bash
+pi update --extensions
+```
+
+</canonical-block>
+
 ## Codex, and other agents: skills.sh
 
-The plugin is Claude Code only. Everywhere else, [skills.sh](https://skills.sh/mattpocock/skills) copies editable skill files into the project. Use the whole-set form on `README.md`:
+Claude Code and PI have native managed routes. Everywhere else, [skills.sh](https://skills.sh/mattpocock/skills) copies editable skill files into the project. Use the whole-set form on `README.md`:
 
 <canonical-block name="skills-sh-whole-set">
 
@@ -52,9 +70,9 @@ npx skills@latest update <name>
 
 `skills@latest` is the pinned spelling in all three. The pages under `docs/` used to carry their own copy of these commands; those blocks are now deleted rather than corrected, because the site renders the install commands itself.
 
-## The two routes are exclusive
+## The routes are exclusive
 
-The plugin is a managed, read-only bundle you subscribe to. skills.sh writes files you own and edit. Installing both leaves the user with every skill twice: always say "pick one".
+The Claude Code plugin and PI package are managed, read-only bundles you subscribe to. skills.sh writes files you own and edit. Installing a native managed route and skills.sh in the same harness leaves the user with every skill twice: always say "pick one".
 
 ## Not the install story
 

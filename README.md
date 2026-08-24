@@ -24,7 +24,7 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 
 ## Installation (30-second setup)
 
-Two ways in, two philosophies. **The [Claude Code plugin](https://code.claude.com/docs/en/plugins)** installs the whole set as a managed, read-only bundle that updates when I ship, so you subscribe rather than fork. **[skills.sh](https://skills.sh/mattpocock/skills)** copies editable skill files into your project, so you can hack on them and make them your own. Pick one: installing both leaves you with every skill twice.
+Two philosophies. **The native Claude Code and PI routes** install the promoted set as a managed, read-only bundle that updates through the harness, so you subscribe rather than fork. **[skills.sh](https://skills.sh/mattpocock/skills)** copies editable skill files into your project, so you can hack on them and make them your own. Pick one route for each harness: installing a native package and skills.sh together leaves you with every skill twice.
 
 ### 1. Get the skills
 
@@ -46,6 +46,23 @@ It's in Claude Code's official marketplace, so there's nothing to add first, and
 </details>
 
 <details>
+<summary><strong>PI</strong></summary>
+
+```bash
+pi install git:github.com/mattpocock/skills
+```
+
+Updates arrive through PI's package updater:
+
+```bash
+pi update --extensions
+```
+
+The package includes only the promoted skills, plus PI compatibility tools for cross-skill calls and isolated or parallel subagents. Both `/setup-matt-pocock-skills` and PI's native `/skill:setup-matt-pocock-skills` form work.
+
+</details>
+
+<details>
 <summary><strong>Codex, and other agents</strong></summary>
 
 ```bash
@@ -61,7 +78,7 @@ A native Codex plugin is on the roadmap (see [`.agents/adr/0002-ship-as-a-claude
 <details>
 <summary><strong>For tinkerers</strong></summary>
 
-Use the same installer, on any agent, including Claude Code:
+Use the same installer on any Agent Skills-compatible harness, including Claude Code and PI:
 
 ```bash
 npx skills@latest add mattpocock/skills

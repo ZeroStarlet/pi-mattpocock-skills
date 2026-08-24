@@ -6,9 +6,9 @@ Skills are organized into bucket folders under `skills/`:
 - `in-progress/`: beta: public on purpose, feedback wanted, not shipped in the plugin
 - `deprecated/`: no longer used
 
-Every skill in `engineering/` or `productivity/` (the **promoted** buckets) must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`'s `skills` array (the Claude Code plugin ships exactly the promoted set). Skills in `misc/`, `in-progress/`, and `deprecated/` must not appear in either.
+Every skill in `engineering/` or `productivity/` (the **promoted** buckets) must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`'s `skills` array (the Claude Code plugin ships exactly the promoted set). `package.json` exposes those same two buckets through `pi.skills`, so the native PI package also ships exactly the promoted set. Skills in `misc/`, `in-progress/`, and `deprecated/` must not appear in the README or Claude manifest, and their bucket roots must not appear in `pi.skills`.
 
-Install commands are copied verbatim from [.agents/install-block.md](./.agents/install-block.md). `.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (a fallback the install block explains, not the documented route). Run `claude plugin validate . --strict` after touching either manifest. Why a Claude plugin but not (yet) a Codex one lives in [.agents/adr/0002-ship-as-a-claude-code-plugin.md](./.agents/adr/0002-ship-as-a-claude-code-plugin.md).
+Install commands are copied verbatim from [.agents/install-block.md](./.agents/install-block.md). `.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (a fallback the install block explains, not the documented route). Run `claude plugin validate . --strict` after touching either Claude manifest, and run `npm run check-pi-package` after touching `package.json`, the PI extension, or the promoted skill set. Why a Claude plugin but not (yet) a Codex one lives in [.agents/adr/0002-ship-as-a-claude-code-plugin.md](./.agents/adr/0002-ship-as-a-claude-code-plugin.md). The native PI package decision lives in [.agents/adr/0003-ship-as-a-native-pi-package.md](./.agents/adr/0003-ship-as-a-native-pi-package.md).
 
 Each skill entry in the top-level `README.md` must link the skill name to its `SKILL.md`.
 
