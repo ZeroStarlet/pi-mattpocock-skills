@@ -29,7 +29,7 @@ PI installs the promoted skill set as a managed package, including its skill-com
 <canonical-block name="pi">
 
 ```bash
-pi install git:github.com/mattpocock/skills
+pi install git:github.com/ZeroStarlet/pi-mattpocock-skills
 ```
 
 Updates arrive through PI's package updater:

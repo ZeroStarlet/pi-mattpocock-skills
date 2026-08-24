@@ -49,7 +49,7 @@ It's in Claude Code's official marketplace, so there's nothing to add first, and
 <summary><strong>PI</strong></summary>
 
 ```bash
-pi install git:github.com/mattpocock/skills
+pi install git:github.com/ZeroStarlet/pi-mattpocock-skills
 ```
 
 Updates arrive through PI's package updater:

@@ -5,7 +5,7 @@
 Ship the promoted skill set as a native PI package. PI users can install the repository with:
 
 ```bash
-pi install git:github.com/mattpocock/skills
+pi install git:github.com/ZeroStarlet/pi-mattpocock-skills
 ```
 
 Updates arrive through PI's package updater:
