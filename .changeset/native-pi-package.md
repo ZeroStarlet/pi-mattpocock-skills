@@ -14,4 +14,4 @@ Updates arrive through PI's package updater:
 pi update --extensions
 ```
 
-The package keeps the existing `/skill-name` commands through PI aliases and adds compatibility tools for cross-skill `Skill` calls and isolated or parallel subagents. Beta, miscellaneous, and deprecated skills stay outside the managed package.
+The package keeps the existing `/skill-name` commands through PI aliases and adds compatibility tools for cross-skill `Skill` calls and isolated or parallel subagents. Beta, miscellaneous, and deprecated skills stay outside the managed package. The repository does not self-register through project PI settings, avoiding duplicate tools when PI runs from a checkout after the git package is installed globally.

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repo = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -75,6 +75,26 @@ for (const extension of expectedPiExtensions) {
 if (!packageJson.keywords?.includes("pi-package")) {
   console.error('package.json keywords must include "pi-package".');
   checks.push(false);
+}
+
+const projectSettingsPath = join(repo, ".pi", "settings.json");
+if (existsSync(projectSettingsPath)) {
+  const projectSettings = JSON.parse(readFileSync(projectSettingsPath, "utf8"));
+  const projectPackages = projectSettings.packages ?? [];
+  const selfLoads = projectPackages.some((entry) => {
+    const source = typeof entry === "string" ? entry : entry?.source;
+    if (typeof source !== "string" || /^(git:|https?:|ssh:|npm:)/.test(source)) {
+      return false;
+    }
+    return resolve(dirname(projectSettingsPath), source) === resolve(repo);
+  });
+
+  if (selfLoads) {
+    console.error(
+      ".pi/settings.json must not load this repository as a local package; it conflicts with a globally installed git package.",
+    );
+    checks.push(false);
+  }
 }
 
 if (checks.includes(false)) process.exit(1);

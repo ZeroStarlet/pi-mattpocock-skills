@@ -17,7 +17,7 @@ PI has native `/skill:<name>` commands and supports extension tools, so both gap
   - A `skill` tool, displayed as `Skill`, that loads model-invoked skills and refuses user-invoked skills.
   - A `subagent` tool that runs isolated PI subprocesses, including a parallel mode.
   - Slash-command aliases such as `/setup-matt-pocock-skills`, while PI's native `/skill:setup-matt-pocock-skills` form remains available.
-- Add `.pi/settings.json` with the repository itself as a local package, so PI loads the integration when this checkout is trusted.
+- Do not add a project `.pi/settings.json` that loads this repository as a local package. A user may run PI from a checkout after installing the git package globally; self-loading would then register both copies and make the `skill` and `subagent` tools collide.
 - Keep `skills.sh` as the editable-copy route. The PI package is the managed, read-only route for PI users.
 
 ## Invariants
@@ -26,4 +26,5 @@ PI has native `/skill:<name>` commands and supports extension tools, so both gap
 - `package.json`'s `pi.skills` roots must remain exactly the promoted buckets.
 - `package.json`'s `pi.extensions` must include the PI compatibility extension.
 - `npm run check-pi-package` must pass after adding, removing, or moving a promoted skill.
+- Project PI settings must not load this repository itself. Maintainers can install the checkout as a local PI package when testing, but that is user-level state, not committed project state.
 - Installing both the native PI package and an editable skills.sh copy creates duplicate skills, so users should pick one route.
